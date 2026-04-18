@@ -1,35 +1,21 @@
 ---
-name: loopwise-cli
-description: >
-  Deploy and manage pages, query courses, and execute GraphQL on the Loopwise
-  platform via CLI. Use when the user wants to deploy a static site or Vite app,
-  manage page deployments, list courses, or run ad-hoc GraphQL queries against
-  their Loopwise school. Triggers on: "loopwise", "deploy page", "pages push",
-  "loopwise pages", "static site deploy".
-license: Proprietary
-compatibility: Requires the loopwise CLI (npm install -g loopwise)
-metadata:
-  author: loopwise
-  version: "0.0.7"
+name: loopwise
+version: 0.0.7
+description: Manage schools, courses, and pages on the Loopwise platform
+requires:
+  bins: ["loopwise"]
 ---
 
 # Loopwise CLI
 
-Authenticate, query, and manage resources on the Loopwise platform via the `loopwise` CLI.
+Authenticate, query, and manage resources on the Loopwise platform — an online course and membership platform for educators.
 
-## Setup
+## Capabilities
 
-```bash
-npm install -g loopwise
-loopwise auth login
-loopwise doctor --json   # verify everything works
-```
-
-For headless CI/agent environments:
-
-```bash
-export LOOPWISE_ACCESS_TOKEN="your_token"
-```
+- **Authentication** — OAuth2 login, token validation, scope checking
+- **Pages** — Create, deploy, promote, and roll back static pages
+- **Courses** — List and query course data
+- **GraphQL** — Execute arbitrary queries against the school admin API
 
 ## Rules
 
@@ -38,6 +24,20 @@ export LOOPWISE_ACCESS_TOKEN="your_token"
 - Use `--jq` to limit response size and protect your context window.
 - Follow the `next` breadcrumbs in JSON output for suggested next actions.
 - Never deploy or mutate without confirming with the user first.
+
+## Authentication
+
+```bash
+# Interactive (opens browser)
+loopwise auth login
+
+# Headless CI/agent
+export LOOPWISE_ACCESS_TOKEN="your_token"
+
+# Verify
+loopwise auth status --json
+loopwise auth validate --scope pages:read --scope pages:write --json
+```
 
 ## Pages Workflow
 
@@ -63,16 +63,12 @@ loopwise pages open my-page
 ## Querying Data
 
 ```bash
+# Courses
 loopwise courses list --json
 loopwise courses list --state published --jq .courses.nodes
+
+# Arbitrary GraphQL
 loopwise graphql query -q '{ school { name } }' --json
-```
-
-## Introspection
-
-```bash
-loopwise commands       # full command catalog as JSON
-loopwise doctor --json  # health check
 ```
 
 ## Commands
@@ -94,6 +90,7 @@ loopwise doctor --json  # health check
 | `pages open <page>` | No | Open page in browser |
 | `doctor` | No | Check auth, API, school info, version |
 | `commands` | No | Dump full command catalog as JSON |
+| `setup [agent]` | No | Install agent skill (claude, cursor, codex, opencode) |
 
 ## Constraints
 
