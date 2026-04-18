@@ -1,6 +1,6 @@
 # Loopwise Agent Skills
 
-Agent skills for managing [Loopwise](https://loopwise.com) (Teachify) sites via MCP.
+Agent skills for managing [Loopwise](https://loopwise.com) sites.
 
 ## Install
 
@@ -8,11 +8,23 @@ Agent skills for managing [Loopwise](https://loopwise.com) (Teachify) sites via 
 npx skills add loopwise/skills
 ```
 
-See [install.md](install.md) for full setup instructions including MCP server configuration and OAuth authentication.
+See [install.md](install.md) for full setup instructions.
 
 ## What's included
 
-- **loopwise** — Full Loopwise MCP integration: courses, members, orders, events, coupons, posts, digital downloads, membership plans, settings, reviews, and comments.
+- **loopwise** — Manage your site via MCP: courses, members, orders, events, pages, settings, and more.
+- **loopwise-cli** — Deploy pages and query data via the `loopwise` CLI.
+
+## Which one should I use?
+
+| | loopwise (MCP) | loopwise-cli |
+|---|---|---|
+| Interface | MCP (Model Context Protocol) | Shell commands |
+| Setup | Add MCP server URL to your agent | `npm install -g loopwise` |
+| Best for | Data queries, site management | Page deployment, CI/CD |
+| Requires | MCP-compatible agent | Agent with shell access |
+
+Most agents support both. Install the full skill set and let your agent pick the right tool.
 
 ## Compatibility
 

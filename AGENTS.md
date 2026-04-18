@@ -8,9 +8,11 @@ For installation, see [install.md](install.md).
 
 ```
 skills/
-  loopwise/
-    SKILL.md                # Agent instructions and MCP tool catalog
+  loopwise/                # MCP skill — site management via MCP
+    SKILL.md
     references/
-      data-model.md         # Entity relationships
-install.md                  # MCP setup instructions
+      data-model.md        # Entity relationships
+  loopwise-cli/            # CLI skill — page deployment and queries
+    SKILL.md
+install.md                 # Setup instructions (MCP + CLI)
 ```

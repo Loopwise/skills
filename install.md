@@ -1,10 +1,6 @@
 # Install Loopwise Agent Skills
 
-This guide sets up the Loopwise MCP server connection so your agent can manage Teachify/Loopwise sites.
-
-## Success criteria
-
-Installation is complete when `check_connection` returns your granted scopes and available tools.
+This package includes two skills: **loopwise** (MCP) and **loopwise-cli** (CLI). You can use either or both.
 
 ## Step 0: Install skills
 
@@ -25,13 +21,13 @@ For global installation (all projects):
 npx skills add loopwise/skills -g
 ```
 
-## Step 1: Configure MCP server
+## Option A: MCP (loopwise)
 
-Add the Loopwise MCP server to your agent's MCP configuration.
+Use this if your agent supports MCP (Claude Code, Cursor, etc.).
 
-### Claude Code
+### 1. Configure MCP server
 
-Add to `.claude/settings.json` or `~/.claude/settings.json`:
+**Claude Code** — Add to `.claude/settings.json` or `~/.claude/settings.json`:
 
 ```json
 {
@@ -44,9 +40,7 @@ Add to `.claude/settings.json` or `~/.claude/settings.json`:
 }
 ```
 
-### Cursor
-
-Add to `.cursor/mcp.json`:
+**Cursor** — Add to `.cursor/mcp.json`:
 
 ```json
 {
@@ -58,22 +52,43 @@ Add to `.cursor/mcp.json`:
 }
 ```
 
-### Other agents
+**Other agents** — Connect to `https://mcp.loopwise.com/mcp` using Streamable HTTP transport with OAuth 2.0 authentication.
 
-Any MCP-compatible agent can connect to `https://mcp.loopwise.com/mcp` using Streamable HTTP transport with OAuth 2.0 authentication.
+### 2. Authenticate
 
-## Step 2: Authenticate
+On first tool call, the MCP server will initiate an OAuth 2.0 authorization flow. Follow the browser prompt to grant access.
 
-On first tool call, the MCP server will initiate an OAuth 2.0 authorization flow. Follow the browser prompt to grant access to your Loopwise site.
-
-After authorization, verify the connection:
+### 3. Verify
 
 > Call `check_connection` to verify your token and see available tools.
 
-Expected output includes:
-- `server_version` — MCP server version
-- `granted_scopes` — OAuth scopes your token has
-- `available_tools` — Number of tools accessible with your scopes
+## Option B: CLI (loopwise-cli)
+
+Use this if your agent can run shell commands.
+
+### 1. Install CLI
+
+```bash
+npm install -g loopwise
+```
+
+### 2. Authenticate
+
+```bash
+loopwise auth login
+```
+
+For headless CI/agent environments:
+
+```bash
+export LOOPWISE_ACCESS_TOKEN="your_token"
+```
+
+### 3. Verify
+
+```bash
+loopwise doctor --json
+```
 
 ## Troubleshooting
 
@@ -83,3 +98,4 @@ Expected output includes:
 | Missing tools | Your OAuth token may lack required scopes — re-authorize |
 | `INSUFFICIENT_SCOPE` errors | Re-authorize to grant the specific scopes listed in the error |
 | Rate limited (429) | Wait and retry — default limit is 100 requests per 60 seconds |
+| `loopwise doctor` fails | Run `loopwise auth login` to re-authenticate |

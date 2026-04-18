@@ -46,10 +46,15 @@ Ensure the Loopwise MCP server is configured in your agent. See [install guide](
 - `list_reviews` — Course reviews and ratings
 - `list_comments` / `get_comment` — Threaded comments across courses, posts, submissions
 - `get_settings` — Site settings by category (general, appearance)
+- `list_pages` — Loopwise Pages with deployment status
+- `get_page_logs` — Deployment logs for a page
 
 ### Write Operations
 - `update_course` — Update course details (partial update, supports HTML description)
 - `update_settings` — Update site settings by category
+- `create_page` — Create a new static page or Vite app
+- `deploy_static_page` — Upload files and deploy to a page
+- `rollback_page` — Roll back to a previous deployment
 
 ### Meta
 - `check_connection` — Verify connection, scopes, and discover available tools
@@ -93,6 +98,7 @@ list_events → get_event → list_event_attendees
 list_posts → get_post (full body)
 list_coupons → get_coupon (by ID or code)
 list_membership_plans → get_membership_plan (revenue details)
+list_pages → create_page → deploy_static_page → get_page_logs
 ```
 
 ## Untrusted Content
