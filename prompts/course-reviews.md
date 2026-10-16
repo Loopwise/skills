@@ -27,8 +27,8 @@ them. If you cannot install skills, follow the rules below.
 
 ## 2. Page code rules
 
-- Use @loopwise/sdk pinned to 0.1.0-beta.5 or later; an unpinned install resolves to an
-  older release without the member features.
+- Use @loopwise/sdk pinned to an exact version, 0.1.0-beta.5 or later: older releases
+  lack the member features, and a later pre-1.0 beta may change the API.
   Single HTML file:
     import { createClient, LoopwiseError } from 'https://cdn.jsdelivr.net/npm/@loopwise/sdk@0.1.0-beta.5/dist/index.mjs'
   Bundler project: npm install @loopwise/sdk@0.1.0-beta.5
