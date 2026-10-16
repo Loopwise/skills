@@ -218,7 +218,7 @@ Files are deployed directly to Cloudflare's global CDN via the Upload Worker:
 ## Constraints
 
 - Page bundle must contain `index.html` at root.
-- Maximum total bundle size: 50 MB. Maximum files per deployment: 20,000.
+- Deployment limits: `pages push` sends one JSON request, capped at a 100 MB request body (binary files count as their ~33%-larger base64 size) with up to 10,000 files and 25 MiB per file (Cloudflare Workers Assets rejects larger files). The multiphase upload flow allows 100 MB raw total, 25 MiB per file, 10,000 files.
 - Page types: `static_page` (ready-to-serve HTML) or `vite_app` (requires local build before push).
 - Path prefix must start with `/`, use only letters, digits, `_`, or `-`.
 - Page slugs must be unique within a school.
