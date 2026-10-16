@@ -57,8 +57,9 @@ loopwise doctor --json
 Use this when the page itself should show site data or act for the signed-in member
 (for example, members reviewing a course).
 
-1. **Add the SDK, pinned to 0.1.0-beta.5 or later.** An unpinned
-   `npm install @loopwise/sdk` resolves to an older release without the member features.
+1. **Add the SDK, pinned to 0.1.0-beta.5 or later.** Member features need it, and
+   the SDK is still in beta, so an exact pin keeps your page's API from changing
+   under it.
 
    Single HTML file:
 
