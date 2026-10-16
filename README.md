@@ -1,39 +1,37 @@
 # Loopwise Agent Skills
 
-Agent skills for managing [Loopwise](https://loopwise.com) sites.
+Agent skills and the MCP server for managing [Loopwise](https://loopwise.com) sites.
 
 ## Install
 
+**Claude Code** — skills and the MCP server in one step:
+
 ```bash
-npx skills add loopwise/skills
+claude plugin marketplace add Loopwise/skills
+claude plugin install loopwise@loopwise
 ```
 
-See [install.md](install.md) for full setup instructions.
+**Any other agent** (Cursor, Codex, Gemini CLI, Copilot, and [more](https://skills.sh)):
+
+```bash
+npx skills add Loopwise/skills
+```
+
+then connect the MCP server; see [install.md](install.md).
 
 ## What's included
 
-- **loopwise** — Manage your site via MCP: courses, members, orders, events, pages, settings, and more.
-- **loopwise-cli** — Deploy pages and query data via the `loopwise` CLI.
-- **loopwise-sdk** — Write the code inside a Loopwise Page with `@loopwise/sdk`: show courses, read the signed-in member, and let members review a course from your own UI.
+| Skill | Use it for | Needs |
+|---|---|---|
+| **loopwise** | Query and manage courses, members, orders, events, pages, settings | MCP server `https://mcp.loopwise.com` (bundled in the Claude Code plugin) |
+| **loopwise-cli** | Deploy Loopwise Pages, query data, CI/CD | `npm install -g loopwise` |
+| **loopwise-sdk** | The code inside a Loopwise Page: show courses, read the signed-in member, let members review a course | `@loopwise/sdk@0.1.0-beta.5` or later, page served on the site's domain |
 
-## Which one should I use?
+The first two manage the site; `loopwise-sdk` is the code you deploy with them.
+Install everything and let your agent pick the right tool.
 
-| | loopwise (MCP) | loopwise-cli | loopwise-sdk |
-|---|---|---|---|
-| Interface | MCP (Model Context Protocol) | Shell commands | Browser JavaScript |
-| Setup | Add MCP server URL to your agent | `npm install -g loopwise` | `npm install @loopwise/sdk@0.1.0-beta.5`, or load it from a CDN |
-| Best for | Data queries, site management | Page deployment, CI/CD | What a page does for its visitors |
-| Requires | MCP-compatible agent | Agent with shell access | A page served on the site's domain |
+## Updates
 
-The first two manage the site; `loopwise-sdk` is the code you deploy with them. Install the full skill set and let your agent pick the right tool.
-
-## Compatibility
-
-Works with any agent that supports the [Agent Skills](https://agentskills.io) standard:
-
-- Claude Code
-- Cursor
-- OpenAI Codex
-- Gemini CLI
-- VS Code / GitHub Copilot
-- And [many more](https://agentskills.io)
+- Claude Code: `claude plugin update loopwise@loopwise`, or turn on auto-update under
+  **Marketplaces** in `/plugin`.
+- skills.sh: `npx skills update`.

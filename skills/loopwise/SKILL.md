@@ -21,7 +21,12 @@ Manage Teachify/Loopwise sites via MCP (Model Context Protocol).
 
 ## Setup
 
-Ensure the Loopwise MCP server is configured in your agent. See [install guide](../../install.md) for setup instructions.
+If the Loopwise tools (`check_connection`, `get_site_info`, …) are not available, the MCP server is not connected yet:
+
+- **Claude Code**: `claude plugin marketplace add Loopwise/skills && claude plugin install loopwise@loopwise` connects it together with these skills. To add only the server: `claude mcp add --transport http loopwise https://mcp.loopwise.com`.
+- **Other agents**: add a remote MCP server at `https://mcp.loopwise.com` (Streamable HTTP, OAuth 2.0).
+
+Tell the user to restart the agent afterwards; the OAuth sign-in opens in the browser on the first tool call. Full guide: https://github.com/Loopwise/skills/blob/main/install.md
 
 ## Before You Start
 

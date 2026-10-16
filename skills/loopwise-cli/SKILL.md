@@ -1,9 +1,17 @@
 ---
-name: loopwise
-version: 0.1.2
-description: Manage courses, pages, and settings on the Loopwise platform
-requires:
-  bins: ["loopwise"]
+name: loopwise-cli
+description: >
+  Deploy and manage Loopwise Pages (static HTML or Vite/React/Vue apps) and query
+  Loopwise site data from the shell with the `loopwise` CLI. Use when the user
+  wants to create, deploy, preview, promote, or roll back a Loopwise Page, scaffold
+  a page from a template, run a GraphQL query against their site, or script
+  Loopwise in CI. Triggers on: "loopwise CLI", "deploy a page", "pages push",
+  "landing page", "Loopwise Page", "GraphQL", "CI/CD".
+license: MIT
+compatibility: Requires the `loopwise` CLI (`npm install -g loopwise`) and shell access.
+metadata:
+  author: loopwise
+  requires-bins: loopwise
 ---
 
 # Loopwise CLI
