@@ -25,7 +25,7 @@
 
 ## 2. 頁面程式碼的規則
 
-- 使用 @loopwise/sdk 並鎖定 0.1.0-beta.5（或更新）。不加版本會裝到沒有學員功能的舊版。
+- 使用 @loopwise/sdk 並鎖定確切版本（0.1.0-beta.5 或更新）：更舊的版本沒有學員功能，而 SDK 仍在 1.0 前，之後的 beta 版可能變更 API。
   單一 HTML 檔：
     import { createClient, LoopwiseError } from 'https://cdn.jsdelivr.net/npm/@loopwise/sdk@0.1.0-beta.5/dist/index.mjs'
   有打包工具的專案：npm install @loopwise/sdk@0.1.0-beta.5
