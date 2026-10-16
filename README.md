@@ -19,6 +19,35 @@ npx skills add Loopwise/skills
 
 then connect the MCP server; see [install.md](install.md).
 
+### Or let your agent install it
+
+Paste this into your agent (Claude Code, Cursor, Codex, …) as is:
+
+```text
+Set up the Loopwise agent tools for me, then confirm each step worked.
+
+1. Skills (and, on Claude Code, the MCP server):
+   - If you are Claude Code, run:
+       claude plugin marketplace add Loopwise/skills
+       claude plugin install loopwise@loopwise
+     Then tell me to restart Claude Code, open /mcp, select "loopwise" and choose
+     Authenticate; I will finish the sign-in in my browser.
+   - Otherwise run: npx skills add Loopwise/skills
+     and add a remote MCP server named "loopwise" at https://mcp.loopwise.com
+     (the root URL, not /mcp; Streamable HTTP, OAuth 2.0) in your MCP settings.
+2. CLI (for deploying pages): npm install -g loopwise@latest (0.3.0 or later), then
+   loopwise auth login (I will sign in), then loopwise doctor --json.
+3. Read the loopwise, loopwise-cli and loopwise-sdk skills and follow them.
+   If page code uses @loopwise/sdk, pin 0.1.0-beta.5 or later: an unpinned install
+   resolves to an older release without the member features.
+4. Verify: call the MCP tool check_connection, and run loopwise doctor --json.
+   Report what passed and what needs me.
+```
+
+For a ready-made task, see [prompts/](prompts/): for example
+[members review a course on a Loopwise Page](prompts/course-reviews.md)
+([繁體中文](prompts/course-reviews.zh-TW.md)).
+
 ## What's included
 
 | Skill | Use it for | Needs |

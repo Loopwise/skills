@@ -17,6 +17,7 @@ skills/
   loopwise-cli/    # CLI skill (bot-synced, see below)
   loopwise-sdk/    # SDK skill: browser code inside a Loopwise Page (@loopwise/sdk)
   <new-skill>/     # any new directory is picked up by both channels
+prompts/           # copy-paste task prompts for customers' agents, linked from README
 scripts/check.mjs  # the gate CI runs; run it before pushing
 install.md         # human setup guide, linked from SKILL.md files by absolute URL
 ```
