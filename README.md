@@ -38,8 +38,8 @@ Set up the Loopwise agent tools for me, then confirm each step worked.
 2. CLI (for deploying pages): npm install -g loopwise@latest (0.3.0 or later), then
    loopwise auth login (I will sign in), then loopwise doctor --json.
 3. Read the loopwise, loopwise-cli and loopwise-sdk skills and follow them.
-   If page code uses @loopwise/sdk, pin 0.1.0-beta.5 or later: an unpinned install
-   resolves to an older release without the member features.
+   If page code uses @loopwise/sdk, pin 0.1.0-beta.5 or later: member features
+   need it, and the SDK is still in beta, so an exact pin keeps the page's API fixed.
 4. Verify: call the MCP tool check_connection, and run loopwise doctor --json.
    Report what passed and what needs me.
 ```

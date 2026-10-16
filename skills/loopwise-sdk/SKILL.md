@@ -23,8 +23,9 @@ Loopwise Page it needs no configuration: it calls the site that serves the page.
 ## Install (pin the version)
 
 Member features (`auth`, `courses.reviewState`, `reviews`) need **0.1.0-beta.5 or
-later**. `npm install @loopwise/sdk` without a version still resolves to an older
-release, so always pin.
+later**. The SDK is still in beta and its API can change between releases, so pin
+an exact version. An existing project whose lockfile holds 0.1.0-beta.4 or older
+has no member methods until it is upgraded.
 
 Single HTML file, no build step:
 
