@@ -14,5 +14,7 @@ skills/
       data-model.md        # Entity relationships
   loopwise-cli/            # CLI skill — page deployment and queries
     SKILL.md
+  loopwise-sdk/            # SDK skill — browser code inside a Loopwise Page
+    SKILL.md
 install.md                 # Setup instructions (MCP + CLI)
 ```
