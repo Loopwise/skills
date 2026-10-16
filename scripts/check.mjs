@@ -7,12 +7,16 @@
 //   $ node scripts/check.mjs --fast    frontmatter only (offline)
 //
 // Every failure prints the file, the problem, and the fix. Exit code is 1 on
-// any failure. No dependencies beyond Node 20+ (and npx / claude when present).
+// any failure. No dependencies beyond Node 20.11+ (and npx / claude when present).
 
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
+
+// The skills.sh CLI version CI installs with. Bump it deliberately, after checking
+// `npx skills@latest add . --list` still finds every skill.
+const SKILLS_CLI = "1.7.2";
 
 const root = resolve(import.meta.dirname, "..");
 const fast = process.argv.includes("--fast");
@@ -42,8 +46,8 @@ for (const dir of skillDirs) {
     fail(`skills/${dir}/`, "directory has no SKILL.md", "add SKILL.md or remove the directory");
     continue;
   }
-  const text = readFileSync(join(root, file), "utf8");
-  const m = text.match(/^---\n([\s\S]*?)\n---\n/);
+  const text = readFileSync(join(root, file), "utf8").replace(/\r\n/g, "\n");
+  const m = text.match(/^---\n([\s\S]*?)\n---(\n|$)/);
   if (!m) {
     fail(file, "no YAML frontmatter", "start the file with ---\\nname: ...\\ndescription: ...\\n---");
     continue;
@@ -113,7 +117,7 @@ if (!fast) {
   // 4. skills.sh: install every skill into a scratch project and compare ----
   const tmp = mkdtempSync(join(tmpdir(), "skills-check-"));
   try {
-    const out = run("npx", ["-y", "skills", "add", root, "--skill", "*", "-a", "claude-code", "-y", "--copy", "--json"], { cwd: tmp });
+    const out = run("npx", ["-y", `skills@${SKILLS_CLI}`, "add", root, "--skill", "*", "-a", "claude-code", "-y", "--copy", "--json"], { cwd: tmp });
     const installed = JSON.parse(out).filter((r) => r.status === "installed").map((r) => r.name).sort();
     if (installed.join() === skillDirs.join()) ok(`npx skills add: installed ${installed.length}/${skillDirs.length}`);
     else fail("skills/", `npx skills add installed [${installed}] but the repo has [${skillDirs}]`, "check names and frontmatter above");

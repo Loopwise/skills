@@ -11,8 +11,10 @@ claude plugin marketplace add Loopwise/skills
 claude plugin install loopwise@loopwise
 ```
 
-This installs both skills **and** connects the Loopwise MCP server. Restart Claude Code;
-the first Loopwise tool call opens an OAuth sign-in in your browser. Check with `/mcp`.
+This installs the skills **and** adds the Loopwise MCP server. Restart Claude Code, run
+`/mcp`, select `loopwise`, and choose **Authenticate** — that opens the Loopwise sign-in
+in your browser. Until then the server shows `Needs authentication` and its tools are
+not available.
 
 Inside a session, `/plugin marketplace add Loopwise/skills` then
 `/plugin install loopwise@loopwise` does the same.
@@ -84,7 +86,7 @@ Use this when the page itself should show site data or act for the signed-in mem
 
 | Issue | Solution |
 |-------|----------|
-| Loopwise tools missing in Claude Code | `/mcp` → check `loopwise` is connected; re-run `/plugin install loopwise@loopwise` |
+| Loopwise tools missing in Claude Code | `claude mcp list`: `Needs authentication` → `/mcp` → `loopwise` → Authenticate; not listed → install the plugin |
 | `check_connection` fails | Re-authenticate from `/mcp` (Claude Code) or your agent's MCP settings |
 | `INSUFFICIENT_SCOPE` errors | Re-authorize to grant the scopes listed in the error |
 | Rate limited (429) | Wait and retry — default limit is 100 requests per 60 seconds |

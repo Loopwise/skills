@@ -39,6 +39,8 @@ install.md         # human setup guide, linked from SKILL.md files by absolute U
 `skills/loopwise-cli/SKILL.md` is copied from `packages/cli/SKILL.md` in
 `kaikhq/manekineko` by the `sync-skills` job of `publish-loopwise-cli.yml` on each CLI
 release. Edit it there; an edit here is overwritten on the next release.
+That job runs `node scripts/check.mjs --fast` here before it pushes, so keep that
+mode offline and fast.
 
 ## Verify
 
