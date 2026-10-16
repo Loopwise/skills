@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "loopwise",
+  "description": "Loopwise agent skills and the Loopwise MCP server",
+  "owner": { "name": "Loopwise", "url": "https://loopwise.com" },
+  "plugins": [
+    {
+      "name": "loopwise",
+      "source": "./",
+      "description": "Manage Loopwise sites from your agent: the Loopwise MCP server plus skills for MCP, the loopwise CLI, and @loopwise/sdk",
+      "homepage": "https://github.com/Loopwise/skills",
+      "repository": "https://github.com/Loopwise/skills",
+      "license": "Proprietary",
+      "keywords": ["loopwise", "teachify", "mcp", "courses", "membership"],
+      "strict": false,
+      "mcpServers": {
+        "loopwise": { "type": "http", "url": "https://mcp.loopwise.com" }
+      }
+    }
+  ]
+}
