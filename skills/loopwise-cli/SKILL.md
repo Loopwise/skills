@@ -175,7 +175,7 @@ CLI errors follow a predictable pattern:
 
 - **Exit 0** — success. JSON output on stdout.
 - **Exit 1** — explicit failure (deploy failed, rollback failed, dry-run validation). Error on stderr.
-- **Exit 2** — oclif `this.error()` path: missing required flags, invalid arguments, API errors, and most validation failures. Error on stderr. In non-TTY mode, `CliError` subclass emits `{"error":"<code>","message":"<message>"}`.
+- **Exit 2** — oclif `this.error()` path: unknown commands and flags, missing required flags, invalid arguments, API errors, and most validation failures. Error on stderr. In non-TTY mode, `CliError` subclass emits `{"error":"<code>","message":"<message>"}`.
 
 Agents should check exit code first (non-zero = failure), then parse stdout on success.
 
